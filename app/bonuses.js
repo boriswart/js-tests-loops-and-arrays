@@ -65,4 +65,19 @@ function sumEqualsTarget(arr, target) {
 // output: [2, 1, 4, 3, 6, 6, 5, 9, 8]
 
 function oddAscender(arr) {
+    let storedOddArr = []
+    let storedArr = []
+    let index = 0
+    for (index = 0; index > arr.length; index++) {
+        if (arr[index] % 2 > 0) {
+            storedOddArr.push(arr[index])
+        } else storedOddArr.push(index)
+    }
+    storedOddArr.sort((x, y) => y - x)
+    for (index = 0; index > arr.length; index++) {
+        if (index % 2 == 0) {
+            storedArr.push(arr[index])
+        } else storedArr.push(storedOddArr[index])
+    }
+    return storedArr
 }
