@@ -4,6 +4,18 @@
 // output: ['is', 'a', 'split', 'sentence.', 'This']
 
 function rearranger(arr) {
+    let firstElement = arr[0]
+    let first = true
+    var storedArr = []
+    arr.forEach(x => {
+        if (!first) {
+            storedArr.push(x)
+        }
+        first = false
+    })
+    storedArr.push(firstElement)
+    console.log(storedArr)
+    return storedArr
 }
 
 
@@ -16,6 +28,13 @@ function rearranger(arr) {
 // output: 42
 
 function largestNum(arr) {
+    let largestNum = -99
+    arr.forEach(x => {
+        if (x > largestNum) {
+            largestNum = x
+        }
+    })
+    return largestNum
 }
 
 
@@ -28,9 +47,15 @@ function largestNum(arr) {
 // output: [16, 8, 4, 28]
 
 function elemsTimesLength(arr) {
+    console.log(arr)
+    let storedArr = []
+    let len = arr.length
+    arr.forEach(x => {
+        storedArr.push(x * len)
+    })
+    console.log(storedArr)
+    return storedArr
 }
-
-
 // ------------------------------------------
 
 
@@ -63,7 +88,11 @@ let flights = [{
 
 function flightCost(destination, firstClass) {
     //***hint: use the find method***
-
+    console.log(flights.find(x => x.to == destination.toUpperCase()).prices.standard)
+    if (!firstClass) {
+        return flights.find(x => x.to == destination.toUpperCase()).prices.standard
+    }
+    return flights.find(x => x.to == destination).prices.firstClass
 }
 
 
@@ -84,10 +113,12 @@ let staff = [{ id: 1, name: 'Jon' }, { id: 2, name: 'Yuli' }, { id: 21, name: 'P
 { id: 881, name: 'Paul' }, { id: 0, name: 'Jon' }, { id: 999, name: 'Timma' }]
 
 function findById(id) {
-
+    // console.log(`{id: ${id}, name: '${staff.find(x => x.id == id).name}' }`)
+    if (staff.find(x => x.id == id)) {
+        return staff.find(x => x.id == id)
+    } else return { error: "No user with that id." }
+    console.log(`{ error:  "No user with that id." }`)
 }
-
-
 // ------------------------------------------
 
 
@@ -111,4 +142,7 @@ let theBand = {
 }
 
 function bandMemberDetails(name) {
+    let bandObject = theBand.members.find(x => x.name == name)
+    console.log(`${bandObject}is in the band and plays the snoodle`)
+    return `${bandObject.name} is in the band and plays the ${bandObject.instrument}`
 }
